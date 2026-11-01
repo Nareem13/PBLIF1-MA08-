@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tambah Kegiatan | Aplikasi Agenda Kegiatan Organisasi Mahasiswa</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/admin.css" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="admin-sidebar" aria-label="Menu admin">
+    <a class="sidebar-brand" href="admin-dashboard.html">
+      <img src="assets/img/logo.png" alt="" width="44" height="31">
+      <span>Agenda Kegiatan</span>
+    </a>
+
+    <nav aria-label="Navigasi admin">
+      <ul class="sidebar-menu">
+        <li><a class="sidebar-link" href="admin-dashboard.html"><i class="fa-solid fa-gauge" aria-hidden="true"></i>Dashboard</a></li>
+        <li><a class="sidebar-link active" href="admin-kegiatan.html" aria-current="page"><i class="fa-regular fa-calendar-days" aria-hidden="true"></i>Kegiatan</a></li>
+        <li><a class="sidebar-link" href="admin-kategori.html"><i class="fa-solid fa-tags" aria-hidden="true"></i>Kategori</a></li>
+        <li><a class="sidebar-link" href="admin-anggota.html"><i class="fa-solid fa-users" aria-hidden="true"></i>Anggota &amp; Pengurus</a></li>
+        <li><a class="sidebar-link" href="admin-rekap.html"><i class="fa-solid fa-chart-column" aria-hidden="true"></i>Rekap</a></li>
+      </ul>
+    </nav>
+
+    <ul class="sidebar-menu sidebar-logout">
+      <li><a class="sidebar-link" href="login.html"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>Keluar</a></li>
+    </ul>
+  </aside>
+
+  <!-- ================= AREA UTAMA ================= -->
+  <div class="admin-main">
+
+    <header class="admin-topbar">
+      <nav aria-label="Breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="admin-kegiatan.html">Kegiatan</a></li>
+          <li class="breadcrumb-item active" aria-current="page" id="crumbAktif">Tambah Kegiatan</li>
+        </ol>
+      </nav>
+
+      <div class="topbar-right">
+        <button type="button" class="btn-icon" aria-label="Notifikasi"><i class="fa-regular fa-bell" aria-hidden="true"></i></button>
+        <div class="dropdown">
+          <button class="user-menu dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false" aria-label="Menu pengguna Admin Pengurus">
+            <img src="assets/img/profile.jpg" alt="" class="user-avatar" width="32" height="32">
+            <span class="user-name">Admin Pengurus</span>
+            <i class="fa-solid fa-chevron-down user-chevron" aria-hidden="true"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="login.html"><i class="fa-solid fa-right-from-bracket fa-fw me-2" aria-hidden="true"></i>Keluar</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-content">
+
+      <!-- Page header (judul menyesuaikan mode tambah/ubah lewat JS) -->
+      <div class="admin-page-header admin-page-header-form">
+        <div>
+          <h1 class="page-title" id="judulHalaman">Tambah Kegiatan</h1>
+          <p class="page-subtitle" id="subjudulHalaman">Isi informasi kegiatan. Tanda <span aria-hidden="true">*</span><span class="visually-hidden">bintang</span> wajib diisi.</p>
+        </div>
+      </div>
+
+      <div class="alert alert-warning" id="alertTidakDitemukan" role="alert" hidden>
+        <i class="fa-solid fa-triangle-exclamation me-2" aria-hidden="true"></i>Kegiatan yang dimaksud tidak ditemukan. Anda dapat menambahkan kegiatan baru di bawah ini.
+      </div>
+
+      <div class="admin-grid-2 admin-section">
+
+        <!-- Form (satu form untuk tambah dan ubah) -->
+        <form class="card" id="formKegiatan" action="#" method="post" novalidate aria-labelledby="judulForm">
+          <div class="app-card-header">
+            <h2 class="app-card-title" id="judulForm">Informasi Kegiatan</h2>
+          </div>
+
+          <div class="form-body-admin">
+
+            <div class="form-row-admin">
+              <label for="namaKegiatan" class="form-label">Nama kegiatan <span aria-hidden="true">*</span></label>
+              <input type="text" class="form-control" id="namaKegiatan" name="nama" placeholder="Contoh: Rapat Koordinasi Bulanan"
+                     required aria-required="true" aria-describedby="namaKegiatanFeedback" maxlength="100">
+              <div class="invalid-feedback" id="namaKegiatanFeedback">Nama kegiatan wajib diisi.</div>
+            </div>
+
+            <div class="form-row-admin form-grid-2">
+              <div>
+                <label for="kategori" class="form-label">Kategori <span aria-hidden="true">*</span></label>
+                <select class="form-select" id="kategori" name="kategori" required aria-required="true" aria-describedby="kategoriFeedback">
+                <option value="" selected>Pilih kategori</option>
+                <option value="rapat">Rapat</option>
+                <option value="pelatihan">Pelatihan</option>
+                <option value="sosial">Sosial</option>
+                <option value="olahraga">Olahraga</option>
+                <option value="lainnya">Lainnya</option>
+                </select>
+                <div class="invalid-feedback" id="kategoriFeedback">Pilih kategori.</div>
+              </div>
+              <div>
+                <label for="status" class="form-label">Status <span aria-hidden="true">*</span></label>
+                <select class="form-select" id="status" name="status" required aria-required="true" aria-describedby="statusFeedback">
+                <option value="direncanakan" selected>Direncanakan</option>
+                <option value="berlangsung">Berlangsung</option>
+                <option value="selesai">Selesai</option>
+                <option value="batal">Batal</option>
+                </select>
+                <div class="invalid-feedback" id="statusFeedback">Pilih status.</div>
+              </div>
+            </div>
+
+            <div class="form-row-admin form-grid-3">
+              <div>
+                <label for="tanggal" class="form-label">Tanggal <span aria-hidden="true">*</span></label>
+                <input type="date" class="form-control" id="tanggal" name="tanggal" required aria-required="true" aria-describedby="tanggalFeedback">
+                <div class="invalid-feedback" id="tanggalFeedback">Tanggal wajib diisi.</div>
+              </div>
+              <div>
+                <label for="jamMulai" class="form-label">Jam mulai <span aria-hidden="true">*</span></label>
+                <input type="time" class="form-control" id="jamMulai" name="jamMulai" required aria-required="true" aria-describedby="jamMulaiFeedback">
+                <div class="invalid-feedback" id="jamMulaiFeedback">Jam mulai wajib diisi.</div>
+              </div>
+              <div>
+                <label for="jamSelesai" class="form-label">Jam selesai</label>
+                <input type="time" class="form-control" id="jamSelesai" name="jamSelesai" aria-describedby="jamSelesaiFeedback">
+                <div class="invalid-feedback" id="jamSelesaiFeedback">Jam selesai harus setelah jam mulai.</div>
+              </div>
+            </div>
+
+            <div class="form-row-admin">
+              <label for="lokasi" class="form-label">Lokasi <span aria-hidden="true">*</span></label>
+              <input type="text" class="form-control" id="lokasi" name="lokasi" placeholder="Contoh: Sekretariat"
+                     required aria-required="true" aria-describedby="lokasiFeedback" maxlength="100">
+              <div class="invalid-feedback" id="lokasiFeedback">Lokasi wajib diisi.</div>
+            </div>
+
+            <div class="form-row-admin">
+              <label for="pic" class="form-label">Penanggung jawab (PIC) <span aria-hidden="true">*</span></label>
+              <select class="form-select" id="pic" name="pic" required aria-required="true" aria-describedby="picFeedback">
+                <option value="" selected>Pilih anggota/pengurus</option>
+                <option value="Budi Santoso">Budi Santoso</option>
+                <option value="Sari Dewi">Sari Dewi</option>
+                <option value="Rudi Hartono">Rudi Hartono</option>
+                <option value="Dewi Lestari">Dewi Lestari</option>
+                <option value="Ahmad Fauzi">Ahmad Fauzi</option>
+                <option value="Maya Putri">Maya Putri</option>
+              </select>
+              <div class="invalid-feedback" id="picFeedback">Pilih penanggung jawab.</div>
+            </div>
+
+            <div class="form-row-admin">
+              <label for="deskripsi" class="form-label">Deskripsi</label>
+              <textarea class="form-control" id="deskripsi" name="deskripsi" rows="4" placeholder="Tuliskan tujuan dan agenda kegiatan"></textarea>
+            </div>
+          </div>
+
+          <div class="form-footer-admin">
+            <button type="button" class="btn btn-light border" id="btnBatal">Batal</button>
+            <button type="submit" class="btn btn-primary" id="btnSimpan">
+              <span class="spinner-border spinner-border-sm me-2 d-none" aria-hidden="true" id="spinnerSimpan"></span>
+              <span id="teksSimpan">Simpan Kegiatan</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Petunjuk -->
+        <aside class="card" aria-labelledby="judulPetunjuk">
+          <div class="app-card-header">
+            <h2 class="app-card-title" id="judulPetunjuk">Petunjuk</h2>
+          </div>
+          <ul class="petunjuk-list">
+            <li>Status awal otomatis “Direncanakan” dan dapat diubah.</li>
+            <li>PIC dipilih dari daftar anggota/pengurus.</li>
+            <li>Peserta ditambahkan setelah kegiatan disimpan, lewat halaman detail kegiatan.</li>
+            <li>Tanggal dan jam akan tampil di agenda anggota.</li>
+          </ul>
+        </aside>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ================= MODAL BUANG PERUBAHAN ================= -->
+  <div class="modal fade" id="modalBatal" tabindex="-1" aria-labelledby="modalBatalJudul" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="modalBatalJudul">Buang perubahan?</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body"><p class="mb-0">Perubahan yang belum disimpan akan hilang.</p></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light border" data-bs-dismiss="modal">Lanjut mengisi</button>
+          <button type="button" class="btn btn-danger" id="btnBuang">Buang perubahan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/admin.js"></script>
+  <script src="assets/js/kegiatan-form.js"></script>
+</body>
+</html>

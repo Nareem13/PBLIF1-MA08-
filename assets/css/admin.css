@@ -1,0 +1,371 @@
+/* =========================================================
+   admin.css — Kerangka & komponen Panel Admin
+   Dimuat SETELAH style.css (memakai token dan komponen yang sama)
+   Sumber: Figma "Wireframe - Admin"
+   ========================================================= */
+
+[hidden] { display: none !important; }
+
+.admin-body .btn { font-weight: 500; }
+
+/* ---------- 1. Kerangka: sidebar 240px + area utama ---------- */
+.admin-sidebar {
+  position: fixed;
+  top: 0; bottom: 0; left: 0;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px 16px;
+  background: var(--app-surface);
+  border-right: 1px solid var(--app-border);
+  overflow-y: auto;
+  z-index: 1020;
+}
+.admin-main { margin-left: 240px; min-height: 100vh; }
+.admin-content { padding: 2rem; }
+
+/* Brand */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: .625rem;
+  height: 64px;
+  padding: 0 8px;
+  margin-bottom: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--app-text);
+  text-decoration: none;
+}
+.sidebar-brand img { height: 31px; width: auto; }
+
+/* Menu */
+.sidebar-menu { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  height: 38px;
+  padding: 0 12px;
+  border-radius: .375rem;
+  font-size: .875rem;
+  color: #343a40;
+  text-decoration: none;
+}
+.sidebar-link i { width: 18px; font-size: .9375rem; text-align: center; color: var(--app-muted); }
+.sidebar-link:hover { background: #f1f3f5; color: var(--app-text); }
+.sidebar-link:focus-visible { outline: 0; box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25); }
+.sidebar-link.active { background: #e7f1ff; color: #0a58ca; font-weight: 500; }   /* #0a58ca: kontras ≥ 4.5:1 di latar biru muda */
+.sidebar-link.active i { color: #0a58ca; }
+.sidebar-logout { margin-top: auto; }
+
+/* ---------- 2. Topbar 64px ---------- */
+.admin-topbar {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  background: var(--app-surface);
+  border-bottom: 1px solid var(--app-border);
+}
+.admin-topbar .breadcrumb {
+  --bs-breadcrumb-divider-color: var(--app-muted);
+  --bs-breadcrumb-item-active-color: var(--app-muted);
+  --bs-breadcrumb-item-padding-x: .5rem;
+  margin: 0;
+  font-size: .875rem;
+}
+.admin-topbar .breadcrumb a { color: var(--app-muted); text-decoration: none; }
+.admin-topbar .breadcrumb a:hover { text-decoration: underline; }
+.topbar-right { display: flex; align-items: center; gap: 1rem; }
+
+/* Tombol ikon polos (lonceng, aksi tabel) — area klik 28px */
+.btn-icon {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: .375rem;
+  background: transparent;
+  color: #343a40;
+  font-size: .9375rem;
+  text-decoration: none;
+  line-height: 1;
+}
+.btn-icon:hover { background: #e9ecef; color: var(--app-text); }
+.btn-icon:focus-visible { outline: 0; box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25); }
+.btn-icon:disabled, .btn-icon.disabled { opacity: .45; pointer-events: none; }
+
+/* ---------- 3. Header halaman admin ---------- */
+.admin-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+.admin-actions { display: flex; gap: .75rem; }
+.admin-section { margin-bottom: 1.5rem; }
+
+.admin-body .app-card-title { font-weight: 600; }
+.app-card-header-lg { min-height: 59px; }
+
+/* ---------- 4. Grid dua kolom (konten + 340px) ---------- */
+.admin-grid-2 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* ---------- 5. Rekap per periode ---------- */
+.segmented {
+  display: inline-flex;
+  padding: 1px;
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: .375rem;
+}
+.segmented label {
+  margin: 0;
+  padding: .3125rem .75rem;
+  font-size: .8125rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: #343a40;
+  border-radius: .3rem;
+  cursor: pointer;
+}
+.segmented label:hover { background: #f1f3f5; }
+.segmented .btn-check:checked + label { background: var(--app-primary); color: #fff; }
+.segmented .btn-check:focus-visible + label { box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25); }
+
+.rekap-body { padding: 1rem 1.25rem; }
+.rekap-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.rekap-summary { display: flex; gap: 2.5rem; }
+.rekap-angka { font-size: 1.5rem; font-weight: 700; line-height: 1.2; }
+.rekap-label { font-size: .75rem; line-height: 1.25; color: var(--app-muted); }
+.rekap-legend { display: flex; gap: 1rem; font-size: .75rem; color: var(--app-muted); }
+.legend-dot { display: inline-block; width: 10px; height: 10px; margin-right: .375rem; border-radius: 2px; }
+.legend-kegiatan { background: #0d6efd; }
+.legend-peserta  { background: #adb5bd; }
+.chart-box { position: relative; height: 190px; margin-top: 1.25rem; }
+
+/* ---------- 6. Kegiatan per kategori ---------- */
+.kategori-body { padding: 1rem 1.25rem; }
+.kategori-item + .kategori-item { margin-top: 1rem; }
+.kategori-row { display: flex; justify-content: space-between; font-size: .875rem; line-height: 1.2; }
+.kategori-nama { font-weight: 500; }
+.kategori-jumlah { color: var(--app-muted); }
+.kategori-item .progress { height: 6px; margin-top: .375rem; background: #e9ecef; border-radius: 3px; }
+
+/* ---------- 7. Filter tabel (FR-05) ---------- */
+.filter-admin {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) auto auto;
+  gap: .75rem;
+  align-items: end;
+  padding: 1rem 1.25rem;
+}
+
+/* ---------- 8. Tabel admin ---------- */
+.table-admin { margin: 0; table-layout: fixed; min-width: 960px; --bs-table-hover-bg: #f8f9fa; }
+.table-admin > :not(caption) > * > * { padding: .8125rem .75rem; border-bottom-color: #e9ecef; }
+.table-admin thead th {
+  padding: .6875rem .75rem;
+  font-size: .75rem;
+  font-weight: 500;
+  color: var(--app-muted);
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+.table-admin tbody td { font-size: .8125rem; vertical-align: middle; }
+.table-admin .td-nama { font-size: .875rem; font-weight: 600; }
+.table-admin .aksi { display: flex; margin-left: -6px; }
+.tabel-wrap { padding: 0 1.25rem; }
+.tabel-kosong td { padding: 2.5rem 1rem !important; text-align: center; color: var(--app-muted); }
+
+/* ---------- 9. Pagination ---------- */
+.tabel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  font-size: .8125rem;
+  color: var(--app-muted);
+}
+.pagination { gap: .25rem; margin: 0; }
+.pagination .page-item .page-link {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: .8125rem;
+  color: #343a40;
+  border: 1px solid var(--app-border);
+  border-radius: .375rem;
+}
+.pagination .page-item:not(:first-child) .page-link { margin-left: 0; }
+.pagination .page-item.active .page-link { background: var(--app-primary); border-color: var(--app-primary); color: #fff; }
+.pagination .page-item.disabled .page-link { color: var(--app-muted); background: var(--app-surface); }
+
+/* ---------- 10. Toast & modal ---------- */
+.app-toast {
+  min-width: 300px;
+  font-size: .875rem;
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-left-width: 4px;
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .1);
+}
+.app-toast .toast-body { display: flex; align-items: flex-start; gap: .625rem; }
+.app-toast-sukses { border-left-color: #198754; }
+.app-toast-sukses .toast-body i { color: #198754; }
+.app-toast-info   { border-left-color: #0dcaf0; }
+.app-toast-info   .toast-body i { color: #087990; }
+.app-toast-bahaya { border-left-color: #dc3545; }
+.app-toast-bahaya .toast-body i { color: #b02a37; }
+
+.modal-title { font-size: 1rem; font-weight: 600; }
+.modal-body { font-size: .875rem; }
+
+/* ---------- 11. Pill status (FR-06) & filter 4 kolom ---------- */
+.status-pills { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
+.status-pills .pill-status {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .4375rem .9375rem;
+  font-size: .8125rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--app-text);
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: 50rem;
+}
+.status-pills .pill-status:hover { background: #f1f3f5; }
+.status-pills .pill-status:focus-visible { outline: 0; box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25); }
+.status-pills .pill-status.active { color: #fff; background: var(--app-primary); border-color: var(--app-primary); }
+.pill-count { font-weight: 400; color: var(--app-muted); }
+.status-pills .pill-status.active .pill-count { color: #fff; }
+
+.filter-admin-4 { grid-template-columns: repeat(4, minmax(0, 1fr)) auto auto; }
+
+/* ---------- 12. Form admin (Tambah/Ubah) ---------- */
+.admin-page-header-form { min-height: 100px; }          /* judul bernapas lebih lega, sesuai Figma */
+.form-body-admin { padding: 1.25rem; }
+.form-row-admin { margin-bottom: 1.25rem; }
+.form-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.form-grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.form-footer-admin {
+  display: flex;
+  justify-content: flex-end;
+  gap: .75rem;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--app-border);
+}
+.petunjuk-list {
+  margin: 0;
+  padding: 1rem 1.25rem 1.25rem 2.25rem;
+  font-size: .8125rem;
+  line-height: 1.4;
+  color: var(--app-muted);
+}
+.petunjuk-list li + li { margin-top: .625rem; }
+.form-label span[aria-hidden="true"] { margin-left: .125rem; }
+
+/* ---------- 13. Detail kegiatan & peserta ---------- */
+.judul-baris { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
+.judul-baris .page-title { margin: 0; }
+.admin-page-header-detail { align-items: flex-start; }
+.admin-page-header-detail .page-subtitle { margin-top: .5rem; }
+
+.info-list { margin: 0; padding: .5rem 1.25rem .75rem; }
+.info-row {
+  display: grid;
+  grid-template-columns: 156px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  padding: .75rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+.info-row:last-child { border-bottom: 0; }
+.info-row dt { margin: 0; font-size: .8125rem; font-weight: 400; color: var(--app-muted); }
+.info-row dd { margin: 0; font-size: .875rem; color: var(--app-text); }
+.info-row-top { align-items: start; }
+
+.stat-stack { display: flex; flex-direction: column; gap: 1rem; }
+
+.peserta-cari {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: .5rem .75rem;
+  align-items: end;
+  padding: 1rem 1.25rem .5rem;
+}
+.peserta-cari .form-label { grid-column: 1 / -1; margin-bottom: 0; font-weight: 500; }
+.peserta-cari .form-control { min-width: 0; }
+.table-peserta { min-width: 0; }
+.table-peserta tbody td.td-no { color: var(--app-muted); }
+.tabel-peserta-wrap { padding: .5rem 1.25rem 0; }
+.tabel-peserta-wrap .table-admin thead th { background: #f8f9fa; }
+.tombol-nonaktif-wrap { display: inline-block; }
+.tombol-nonaktif-wrap .btn:disabled { pointer-events: none; }
+
+/* ---------- 14. Modal Tambah Peserta ---------- */
+#modalTambahPeserta .modal-dialog { max-width: 560px; }
+#modalTambahPeserta .modal-body { padding: 1rem 1.25rem .5rem; }
+#modalTambahPeserta .form-label { font-weight: 500; }
+.modal-footer-split { justify-content: space-between; padding: 1rem 1.25rem; }
+.text-muted-app { font-size: .8125rem; color: var(--app-muted); }
+.daftar-anggota { margin: .75rem 0 0; padding: 0; border: 0; max-height: 247px; overflow-y: auto; }
+.anggota-row {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .625rem 0;
+  border-bottom: 1px solid #e9ecef;
+  cursor: pointer;
+}
+.anggota-row:last-of-type { border-bottom: 0; }
+.anggota-row .form-check-input { margin: 0; flex-shrink: 0; width: 1rem; height: 1rem; cursor: pointer; }
+.anggota-row:focus-within { background: #f8f9fa; }
+.anggota-nama { font-size: .875rem; font-weight: 600; color: var(--app-text); }
+.anggota-peran { font-size: .8125rem; color: var(--app-muted); flex: 1; }
+.anggota-ket { font-size: .75rem; font-weight: 500; color: var(--app-muted); }
+.anggota-row.sudah { cursor: default; }
+.anggota-row.sudah .anggota-nama { color: var(--app-muted); }
+.anggota-row.sudah .form-check-input { cursor: default; }
+.anggota-kosong { margin: 0; padding: 1.5rem 0; text-align: center; color: var(--app-muted); font-size: .875rem; }
+
+/* ---------- 15. Anggota & Pengurus ---------- */
+.filter-admin-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) auto auto; }
+.tabel-wrap-pendaftar { padding-top: .75rem; padding-bottom: .5rem; }
+.alert-info { font-size: .875rem; margin-bottom: 1.5rem; }
+.admin-body .status-pills + .alert, .admin-body .status-pills + .card { margin-top: 1.5rem; }
+.btn-aksi-setuju { display: flex; gap: .5rem; }
+.nama-anda { font-weight: 400; font-size: .8125rem; color: var(--app-muted); margin-left: .25rem; }
+.info-list-modal { padding: 0; }
+.td-peran { color: #495057; }
+
+/* ---------- 16. Kategori ---------- */
+.filter-admin-1 { grid-template-columns: minmax(0, 1fr) auto auto; }
+#modalKategori .modal-dialog { max-width: 480px; }
+.td-deskripsi { color: #495057; }
+
+/* ---------- 17. Rekap Kegiatan ---------- */
+.filter-rekap { grid-template-columns: auto repeat(4, minmax(0, 1fr)) auto; }
+.segmented-lg { padding: 0; border-color: #ced4da; overflow: hidden; }
+.segmented-lg label { padding: .5625rem 1rem; font-size: .875rem; border-radius: 0; }
+.chart-box-rekap { height: 190px; margin-top: 0; }
+.rekap-kosong { margin: 0; padding: 3rem 1rem; text-align: center; color: var(--app-muted); font-size: .875rem; }
+.table-rekap { min-width: 0; }
+.table-rekap tfoot .baris-total > * { background: #f8f9fa; font-weight: 600; font-size: .875rem; border-bottom: 0; }
+.table-rekap tbody td, .table-rekap tbody th { font-size: .875rem; font-weight: 400; }
+.table-rekap tbody th { color: var(--app-text); }

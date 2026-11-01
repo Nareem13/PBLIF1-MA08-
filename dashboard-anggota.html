@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beranda | Aplikasi Agenda Kegiatan Organisasi Mahasiswa</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="navbar app-navbar" aria-label="Navigasi utama">
+    <div class="app-container app-navbar-inner">
+
+      <!-- Kiri: brand + menu -->
+      <div class="d-flex align-items-center">
+        <a class="app-brand" href="dashboard-anggota.html">
+          <img src="assets/img/logo.png" alt="" width="44" height="31">
+          <span>Agenda Kegiatan</span>
+        </a>
+
+        <ul class="nav app-nav">
+          <li class="nav-item"><a class="nav-link active" href="dashboard-anggota.html" aria-current="page">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Kegiatan</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Profil</a></li>
+        </ul>
+      </div>
+
+      <!-- Kanan: menu pengguna -->
+      <div class="dropdown">
+        <button class="user-menu dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false" aria-label="Menu pengguna Stephen">
+          <img src="assets/img/profile.jpg" alt="" class="user-avatar" width="32" height="32">
+          <span class="user-name">Stephen</span>
+          <i class="fa-solid fa-chevron-down user-chevron" aria-hidden="true"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user fa-fw me-2" aria-hidden="true"></i>Profil saya</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="login.html"><i class="fa-solid fa-right-from-bracket fa-fw me-2" aria-hidden="true"></i>Keluar</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ================= KONTEN ================= -->
+  <main class="app-container app-content">
+
+    <!-- Page header -->
+    <header class="page-header">
+      <h1 class="page-title">Halo, Stephen</h1>
+      <p class="page-subtitle">Berikut agenda dan kegiatan organisasi Anda.</p>
+    </header>
+
+    <!-- Stat cards -->
+    <section class="row row-cols-4 g-3 mb-4" aria-label="Ringkasan kegiatan">
+      <div class="col">
+        <div class="card stat-card h-100">
+          <div class="card-body">
+            <div class="stat-label">Kegiatan Bulan Ini</div>
+            <div class="stat-value">12</div>
+            <div class="stat-caption">Seluruh kegiatan organisasi</div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card stat-card h-100">
+          <div class="card-body">
+            <div class="stat-label">Saya Ikuti</div>
+            <div class="stat-value">5</div>
+            <div class="stat-caption">Sebagai peserta</div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card stat-card h-100">
+          <div class="card-body">
+            <div class="stat-label">Saya PIC</div>
+            <div class="stat-value">2</div>
+            <div class="stat-caption">Penanggung jawab</div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card stat-card h-100">
+          <div class="card-body">
+            <div class="stat-label">7 Hari ke Depan</div>
+            <div class="stat-value">3</div>
+            <div class="stat-caption">Kegiatan terjadwal</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main grid (dua kolom) — diisi di Tahap 6 dan 7 -->
+    <div class="row g-4 align-items-start" id="mainGrid">
+
+      <!-- ===== Kolom kiri: Agenda Mendatang ===== -->
+      <div class="col-lg-8">
+        <section class="card" aria-labelledby="judulAgenda">
+          <div class="app-card-header">
+            <h2 class="app-card-title" id="judulAgenda">Agenda Mendatang</h2>
+            <a href="#" class="app-card-link">Lihat semua</a>
+          </div>
+
+          <div class="card-body agenda-body" id="areaAgenda">
+
+            <!-- Filter pencarian (FR-05) -->
+            <form class="agenda-filter" id="formFilter" role="search" aria-label="Cari kegiatan" action="#">
+              <div>
+                <label for="filterCari" class="form-label">Cari kegiatan</label>
+                <input type="search" class="form-control" id="filterCari" name="cari" placeholder="Nama atau PIC">
+              </div>
+              <div>
+                <label for="filterKategori" class="form-label">Kategori</label>
+                <select class="form-select" id="filterKategori" name="kategori">
+                  <option value="" selected>Semua kategori</option>
+                  <option value="rapat">Rapat</option>
+                  <option value="pelatihan">Pelatihan</option>
+                  <option value="sosial">Sosial</option>
+                </select>
+              </div>
+              <div>
+                <label for="filterStatus" class="form-label">Status</label>
+                <select class="form-select" id="filterStatus" name="status">
+                  <option value="" selected>Semua status</option>
+                  <option value="direncanakan">Direncanakan</option>
+                  <option value="berlangsung">Berlangsung</option>
+                  <option value="selesai">Selesai</option>
+                  <option value="batal">Batal</option>
+                </select>
+              </div>
+              <div>
+                <label for="filterTanggal" class="form-label">Tanggal</label>
+                <input type="date" class="form-control" id="filterTanggal" name="tanggal">
+              </div>
+              <button type="submit" class="btn btn-primary">Cari</button>
+            </form>
+
+            <!-- Daftar kegiatan -->
+            <ul class="agenda-list" id="daftarAgenda">
+
+              <li class="agenda-item" data-kategori="rapat" data-status="berlangsung">
+                <time class="agenda-date" datetime="2026-10-18">
+                  <span class="agenda-month">Okt</span><span class="agenda-day">18</span>
+                </time>
+                <div class="agenda-info">
+                  <div class="agenda-heading">
+                    <h3 class="agenda-name">Rapat Koordinasi Bulanan</h3>
+                    <span class="tag-kategori">Rapat</span>
+                  </div>
+                  <div class="agenda-meta">
+                    <span><i class="fa-regular fa-clock" aria-hidden="true"></i>19.00–21.00</span>
+                    <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Sekretariat</span>
+                    <span><i class="fa-regular fa-user" aria-hidden="true"></i>PIC: Stephen</span>
+                  </div>
+                </div>
+                <span class="badge rounded-pill status-badge bg-primary-subtle text-primary-emphasis">Berlangsung</span>
+              </li>
+
+              <li class="agenda-item" data-kategori="pelatihan" data-status="direncanakan">
+                <time class="agenda-date" datetime="2026-10-21">
+                  <span class="agenda-month">Okt</span><span class="agenda-day">21</span>
+                </time>
+                <div class="agenda-info">
+                  <div class="agenda-heading">
+                    <h3 class="agenda-name">Pelatihan Dasar Organisasi</h3>
+                    <span class="tag-kategori">Pelatihan</span>
+                  </div>
+                  <div class="agenda-meta">
+                    <span><i class="fa-regular fa-clock" aria-hidden="true"></i>09.00–12.00</span>
+                    <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Aula Lt. 2</span>
+                    <span><i class="fa-regular fa-user" aria-hidden="true"></i>PIC: Rival</span>
+                  </div>
+                </div>
+                <span class="badge rounded-pill status-badge bg-info-subtle text-info-emphasis">Direncanakan</span>
+              </li>
+
+              <li class="agenda-item" data-kategori="sosial" data-status="direncanakan">
+                <time class="agenda-date" datetime="2026-10-24">
+                  <span class="agenda-month">Okt</span><span class="agenda-day">24</span>
+                </time>
+                <div class="agenda-info">
+                  <div class="agenda-heading">
+                    <h3 class="agenda-name">Bakti Sosial Panti Asuhan</h3>
+                    <span class="tag-kategori">Sosial</span>
+                  </div>
+                  <div class="agenda-meta">
+                    <span><i class="fa-regular fa-clock" aria-hidden="true"></i>08.00–14.00</span>
+                    <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Panti Asuhan Harapan</span>
+                    <span><i class="fa-regular fa-user" aria-hidden="true"></i>PIC: Elmova</span>
+                  </div>
+                </div>
+                <span class="badge rounded-pill status-badge bg-info-subtle text-info-emphasis">Direncanakan</span>
+              </li>
+
+              <li class="agenda-item" data-kategori="sosial" data-status="batal">
+                <time class="agenda-date" datetime="2026-10-27">
+                  <span class="agenda-month">Okt</span><span class="agenda-day">27</span>
+                </time>
+                <div class="agenda-info">
+                  <div class="agenda-heading">
+                    <h3 class="agenda-name">Kerja Bakti Lingkungan</h3>
+                    <span class="tag-kategori">Sosial</span>
+                  </div>
+                  <div class="agenda-meta">
+                    <span><i class="fa-regular fa-clock" aria-hidden="true"></i>07.00–10.00</span>
+                    <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Lingkungan RW 05</span>
+                    <span><i class="fa-regular fa-user" aria-hidden="true"></i>PIC: Rival</span>
+                  </div>
+                </div>
+                <span class="badge rounded-pill status-badge bg-danger-subtle text-danger-emphasis">Batal</span>
+              </li>
+
+              <li class="agenda-item" data-kategori="rapat" data-status="direncanakan">
+                <time class="agenda-date" datetime="2026-10-31">
+                  <span class="agenda-month">Okt</span><span class="agenda-day">31</span>
+                </time>
+                <div class="agenda-info">
+                  <div class="agenda-heading">
+                    <h3 class="agenda-name">Evaluasi Triwulan III</h3>
+                    <span class="tag-kategori">Rapat</span>
+                  </div>
+                  <div class="agenda-meta">
+                    <span><i class="fa-regular fa-clock" aria-hidden="true"></i>19.00–21.00</span>
+                    <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Sekretariat</span>
+                    <span><i class="fa-regular fa-user" aria-hidden="true"></i>PIC: Stephen</span>
+                  </div>
+                </div>
+                <span class="badge rounded-pill status-badge bg-info-subtle text-info-emphasis">Direncanakan</span>
+              </li>
+
+            </ul>
+
+            <!-- State: loading (kerangka baris, placeholder-glow) -->
+            <div class="agenda-loading placeholder-glow d-none" id="agendaLoading" aria-hidden="true">
+              <div class="agenda-item">
+                <span class="placeholder agenda-date-ph"></span>
+                <div class="agenda-info">
+                  <span class="placeholder col-6 d-block mb-2"></span>
+                  <span class="placeholder col-9 d-block"></span>
+                </div>
+                <span class="placeholder rounded-pill status-ph"></span>
+              </div>
+              <div class="agenda-item">
+                <span class="placeholder agenda-date-ph"></span>
+                <div class="agenda-info">
+                  <span class="placeholder col-6 d-block mb-2"></span>
+                  <span class="placeholder col-9 d-block"></span>
+                </div>
+                <span class="placeholder rounded-pill status-ph"></span>
+              </div>
+              <div class="agenda-item">
+                <span class="placeholder agenda-date-ph"></span>
+                <div class="agenda-info">
+                  <span class="placeholder col-6 d-block mb-2"></span>
+                  <span class="placeholder col-9 d-block"></span>
+                </div>
+                <span class="placeholder rounded-pill status-ph"></span>
+              </div>
+              <div class="agenda-item">
+                <span class="placeholder agenda-date-ph"></span>
+                <div class="agenda-info">
+                  <span class="placeholder col-6 d-block mb-2"></span>
+                  <span class="placeholder col-9 d-block"></span>
+                </div>
+                <span class="placeholder rounded-pill status-ph"></span>
+              </div>
+              <div class="agenda-item">
+                <span class="placeholder agenda-date-ph"></span>
+                <div class="agenda-info">
+                  <span class="placeholder col-6 d-block mb-2"></span>
+                  <span class="placeholder col-9 d-block"></span>
+                </div>
+                <span class="placeholder rounded-pill status-ph"></span>
+              </div>
+            </div>
+
+            <!-- State: kosong -->
+            <div class="agenda-state d-none" id="agendaKosong" role="status">
+              <div class="agenda-state-icon" aria-hidden="true"><i class="fa-regular fa-calendar-days"></i></div>
+              <p class="agenda-state-title">Belum ada kegiatan yang cocok</p>
+              <p class="agenda-state-text">Coba ubah kata kunci atau filter pencarian Anda.</p>
+              <button type="button" class="btn btn-outline-secondary btn-sm" id="btnReset">Atur ulang filter</button>
+            </div>
+
+            <!-- State: error -->
+            <div class="d-none" id="agendaError" role="alert">
+              <div class="alert alert-danger auth-alert">
+                <i class="fa-solid fa-circle-exclamation mt-1" aria-hidden="true"></i>
+                <span>Agenda gagal dimuat. Periksa koneksi Anda, lalu coba lagi.</span>
+              </div>
+              <button type="button" class="btn btn-outline-primary btn-sm" id="btnCobaLagi">Coba lagi</button>
+            </div>
+
+            <!-- Pengumuman hasil untuk pembaca layar -->
+            <p class="visually-hidden" id="hasilFilter" aria-live="polite"></p>
+          </div>
+        </section>
+      </div>
+
+      <!-- ===== Kolom kanan: Kegiatan Hari Ini + Saya Sebagai PIC ===== -->
+      <div class="col-lg-4 d-flex flex-column gap-4">
+
+        <!-- Kegiatan Hari Ini -->
+        <section class="card" aria-labelledby="judulHariIni">
+          <div class="app-card-header">
+            <h2 class="app-card-title" id="judulHariIni">Kegiatan Hari Ini</h2>
+          </div>
+          <div class="card-body today-body">
+            <h3 class="agenda-name">Rapat Koordinasi Bulanan</h3>
+            <span class="badge rounded-pill status-badge bg-primary-subtle text-primary-emphasis">Berlangsung</span>
+            <div class="meta-stack">
+              <span><i class="fa-regular fa-clock" aria-hidden="true"></i>19.00–21.00</span>
+              <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Sekretariat</span>
+            </div>
+            <a href="#" class="btn btn-outline-primary">Lihat detail</a>
+          </div>
+        </section>
+
+        <!-- Saya Sebagai PIC -->
+        <section class="card" aria-labelledby="judulPic">
+          <div class="app-card-header">
+            <h2 class="app-card-title" id="judulPic">Saya Sebagai PIC</h2>
+          </div>
+          <div class="card-body pic-body">
+            <ul class="pic-list">
+              <li class="pic-item">
+                <h3 class="pic-name">Rapat Koordinasi Bulanan</h3>
+                <div class="pic-meta">
+                  <span>18 Okt · Sekretariat</span>
+                  <span class="badge rounded-pill status-badge bg-primary-subtle text-primary-emphasis">Berlangsung</span>
+                </div>
+              </li>
+              <li class="pic-item">
+                <h3 class="pic-name">Evaluasi Triwulan III</h3>
+                <div class="pic-meta">
+                  <span>31 Okt · Sekretariat</span>
+                  <span class="badge rounded-pill status-badge bg-info-subtle text-info-emphasis">Direncanakan</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>

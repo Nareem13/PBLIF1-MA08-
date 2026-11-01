@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detail Kegiatan | Aplikasi Agenda Kegiatan Organisasi Mahasiswa</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/admin.css" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="admin-sidebar" aria-label="Menu admin">
+    <a class="sidebar-brand" href="admin-dashboard.html">
+      <img src="assets/img/logo.png" alt="" width="44" height="31">
+      <span>Agenda Kegiatan</span>
+    </a>
+
+    <nav aria-label="Navigasi admin">
+      <ul class="sidebar-menu">
+        <li><a class="sidebar-link" href="admin-dashboard.html"><i class="fa-solid fa-gauge" aria-hidden="true"></i>Dashboard</a></li>
+        <li><a class="sidebar-link active" href="admin-kegiatan.html" aria-current="page"><i class="fa-regular fa-calendar-days" aria-hidden="true"></i>Kegiatan</a></li>
+        <li><a class="sidebar-link" href="admin-kategori.html"><i class="fa-solid fa-tags" aria-hidden="true"></i>Kategori</a></li>
+        <li><a class="sidebar-link" href="admin-anggota.html"><i class="fa-solid fa-users" aria-hidden="true"></i>Anggota &amp; Pengurus</a></li>
+        <li><a class="sidebar-link" href="admin-rekap.html"><i class="fa-solid fa-chart-column" aria-hidden="true"></i>Rekap</a></li>
+      </ul>
+    </nav>
+
+    <ul class="sidebar-menu sidebar-logout">
+      <li><a class="sidebar-link" href="login.html"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>Keluar</a></li>
+    </ul>
+  </aside>
+
+  <!-- ================= AREA UTAMA ================= -->
+  <div class="admin-main">
+
+    <header class="admin-topbar">
+      <nav aria-label="Breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="admin-kegiatan.html">Kegiatan</a></li>
+          <li class="breadcrumb-item active" aria-current="page" id="crumbAktif">Rapat Koordinasi Bulanan</li>
+        </ol>
+      </nav>
+
+      <div class="topbar-right">
+        <button type="button" class="btn-icon" aria-label="Notifikasi"><i class="fa-regular fa-bell" aria-hidden="true"></i></button>
+        <div class="dropdown">
+          <button class="user-menu dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false" aria-label="Menu pengguna Admin Pengurus">
+            <img src="assets/img/foto-profil.jpg" alt="" class="user-avatar" width="32" height="32">
+            <span class="user-name">Admin Pengurus</span>
+            <i class="fa-solid fa-chevron-down user-chevron" aria-hidden="true"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="login.html"><i class="fa-solid fa-right-from-bracket fa-fw me-2" aria-hidden="true"></i>Keluar</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-content">
+
+      <!-- Kegiatan tidak ditemukan (id tidak valid) -->
+      <div id="tidakDitemukan" hidden>
+        <h1 class="page-title">Kegiatan tidak ditemukan</h1>
+        <p class="page-subtitle mb-3">Kegiatan yang Anda cari tidak ada atau sudah dihapus.</p>
+        <a href="admin-kegiatan.html" class="btn btn-primary">Kembali ke daftar kegiatan</a>
+      </div>
+
+      <div id="kontenDetail">
+      <!-- Page header -->
+      <div class="admin-page-header admin-page-header-detail">
+        <div>
+          <div class="judul-baris">
+            <h1 class="page-title" id="judulKegiatan">Rapat Koordinasi Bulanan</h1>
+            <span class="badge rounded-pill status-badge bg-primary-subtle text-primary-emphasis" id="badgeStatus">Berlangsung</span>
+          </div>
+          <p class="page-subtitle">Detail kegiatan dan daftar peserta.</p>
+        </div>
+        <div class="admin-actions">
+          <a href="admin-kegiatan-form.html?id=1" class="btn btn-outline-primary" id="tombolUbah">Ubah</a>
+          <button type="button" class="btn btn-light border" id="tombolHapus" data-hapus data-jenis="kegiatan"
+                  data-nama="Rapat Koordinasi Bulanan" data-alihan="admin-kegiatan.html?pesan=kegiatan-dihapus">Hapus</button>
+        </div>
+      </div>
+
+      <div class="admin-grid-2 admin-section">
+        <!-- Informasi kegiatan -->
+        <section class="card" aria-labelledby="judulInfo">
+          <div class="app-card-header">
+            <h2 class="app-card-title" id="judulInfo">Informasi Kegiatan</h2>
+          </div>
+          <dl class="info-list">
+            <div class="info-row"><dt>Kategori</dt><dd id="infoKategori">Rapat</dd></div>
+            <div class="info-row"><dt>Tanggal</dt><dd id="infoTanggal">Minggu, 18 Oktober 2026</dd></div>
+            <div class="info-row"><dt>Jam</dt><dd id="infoJam">19.00 &ndash; 21.00 WIB</dd></div>
+            <div class="info-row"><dt>Lokasi</dt><dd id="infoLokasi">Sekretariat</dd></div>
+            <div class="info-row"><dt>PIC</dt><dd id="infoPic">Budi Santoso</dd></div>
+            <div class="info-row"><dt>Status</dt><dd><span class="badge rounded-pill status-badge bg-primary-subtle text-primary-emphasis" id="infoStatus">Berlangsung</span></dd></div>
+            <div class="info-row info-row-top"><dt>Deskripsi</dt><dd id="infoDeskripsi">Pembahasan program kerja bulan Oktober, evaluasi kegiatan bulan lalu, dan persiapan kegiatan akhir tahun.</dd></div>
+          </dl>
+        </section>
+
+        <!-- Ringkasan -->
+        <div class="stat-stack" aria-label="Ringkasan kegiatan">
+          <div class="card stat-card">
+            <div class="card-body">
+              <div class="stat-label">Jumlah Peserta</div>
+              <div class="stat-value" id="statPeserta">24</div>
+              <div class="stat-caption">Terdaftar</div>
+            </div>
+          </div>
+          <div class="card stat-card">
+            <div class="card-body">
+              <div class="stat-label">Tanggal</div>
+              <div class="stat-value" id="statTanggal">18 Okt</div>
+              <div class="stat-caption" id="statJam">Minggu, 19.00 WIB</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peserta -->
+      <section class="card admin-section" aria-labelledby="judulPeserta">
+        <div class="app-card-header app-card-header-lg">
+          <h2 class="app-card-title" id="judulPeserta">Peserta (<span id="jumlahPeserta">24</span>)</h2>
+          <span class="tombol-nonaktif-wrap" id="wrapTambah">
+            <button type="button" class="btn btn-primary" id="tombolTambahPeserta">+ Tambah Peserta</button>
+          </span>
+        </div>
+
+        <form class="peserta-cari" id="formCariPeserta" role="search" aria-label="Cari peserta" action="#">
+          <label for="cariPeserta" class="form-label">Cari peserta</label>
+          <input type="search" class="form-control" id="cariPeserta" name="cari" placeholder="Nama atau email" autocomplete="off">
+          <button type="submit" class="btn btn-primary">Cari</button>
+        </form>
+
+        <div class="tabel-peserta-wrap">
+          <div class="table-responsive">
+            <table class="table table-hover table-admin table-peserta align-middle">
+              <caption class="visually-hidden">Daftar peserta kegiatan</caption>
+              <colgroup>
+                <col style="width: 7%"><col style="width: 42%"><col style="width: 16%"><col style="width: 28%"><col style="width: 7%">
+              </colgroup>
+              <thead>
+                <tr><th scope="col">No</th><th scope="col">Nama</th><th scope="col">Peran</th><th scope="col">Email</th><th scope="col">Aksi</th></tr>
+              </thead>
+              <tbody id="tabelPeserta"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="tabel-footer">
+          <span id="infoPeserta" aria-live="polite">Menampilkan 1&ndash;6 dari 24 peserta</span>
+          <nav aria-label="Navigasi halaman peserta" id="navPeserta">
+            <ul class="pagination" id="paginasiPeserta"></ul>
+          </nav>
+        </div>
+      </section>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ================= MODAL KONFIRMASI HAPUS ================= -->
+  <div class="modal fade" id="modalHapus" tabindex="-1" aria-labelledby="modalHapusJudul" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="modalHapusJudul">Hapus data?</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body"><p class="mb-0" id="modalHapusPesan"></p></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light border" data-bs-dismiss="modal">Batal</button>
+          <button type="button" class="btn btn-danger" id="btnKonfirmasiHapus">Hapus</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL TAMBAH PESERTA (FR-04) ================= -->
+  <div class="modal fade" id="modalTambahPeserta" tabindex="-1" aria-labelledby="modalTambahJudul" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="modalTambahJudul">Tambah Peserta</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body">
+          <label for="cariAnggota" class="form-label">Cari anggota</label>
+          <input type="search" class="form-control" id="cariAnggota" placeholder="Nama atau email" autocomplete="off">
+          <fieldset class="daftar-anggota" id="daftarAnggota">
+            <legend class="visually-hidden">Pilih anggota yang akan ditambahkan</legend>
+          </fieldset>
+        </div>
+        <div class="modal-footer modal-footer-split">
+          <span class="text-muted-app" id="jumlahDipilih" aria-live="polite">0 anggota dipilih</span>
+          <div class="d-flex gap-2">
+            <button type="button" class="btn btn-light border" data-bs-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-primary" id="btnTambahkan" disabled>Tambahkan (0)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/admin.js"></script>
+  <script src="assets/js/kegiatan-detail.js"></script>
+</body>
+</html>

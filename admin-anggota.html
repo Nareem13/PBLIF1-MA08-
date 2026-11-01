@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anggota &amp; Pengurus | Aplikasi Agenda Kegiatan Organisasi Mahasiswa</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/admin.css" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="admin-sidebar" aria-label="Menu admin">
+    <a class="sidebar-brand" href="admin-dashboard.html">
+      <img src="assets/img/logo.png" alt="" width="44" height="31">
+      <span>Agenda Kegiatan</span>
+    </a>
+
+    <nav aria-label="Navigasi admin">
+      <ul class="sidebar-menu">
+        <li><a class="sidebar-link" href="admin-dashboard.html"><i class="fa-solid fa-gauge" aria-hidden="true"></i>Dashboard</a></li>
+        <li><a class="sidebar-link" href="admin-kegiatan.html"><i class="fa-regular fa-calendar-days" aria-hidden="true"></i>Kegiatan</a></li>
+        <li><a class="sidebar-link" href="admin-kategori.html"><i class="fa-solid fa-tags" aria-hidden="true"></i>Kategori</a></li>
+        <li><a class="sidebar-link active" href="admin-anggota.html" aria-current="page"><i class="fa-solid fa-users" aria-hidden="true"></i>Anggota &amp; Pengurus</a></li>
+        <li><a class="sidebar-link" href="admin-rekap.html"><i class="fa-solid fa-chart-column" aria-hidden="true"></i>Rekap</a></li>
+      </ul>
+    </nav>
+
+    <ul class="sidebar-menu sidebar-logout">
+      <li><a class="sidebar-link" href="login.html"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>Keluar</a></li>
+    </ul>
+  </aside>
+
+  <!-- ================= AREA UTAMA ================= -->
+  <div class="admin-main">
+
+    <header class="admin-topbar">
+      <nav aria-label="Breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="admin-dashboard.html">Beranda</a></li>
+          <li class="breadcrumb-item active" aria-current="page" id="crumbAktif">Anggota &amp; Pengurus</li>
+        </ol>
+      </nav>
+
+      <div class="topbar-right">
+        <button type="button" class="btn-icon" aria-label="Notifikasi"><i class="fa-regular fa-bell" aria-hidden="true"></i></button>
+        <div class="dropdown">
+          <button class="user-menu dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false" aria-label="Menu pengguna Admin Pengurus">
+            <img src="assets/img/profile.jpg" alt="" class="user-avatar" width="32" height="32">
+            <span class="user-name">Admin Pengurus</span>
+            <i class="fa-solid fa-chevron-down user-chevron" aria-hidden="true"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="login.html"><i class="fa-solid fa-right-from-bracket fa-fw me-2" aria-hidden="true"></i>Keluar</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-content">
+
+      <!-- Page header -->
+      <div class="admin-page-header">
+        <div>
+          <h1 class="page-title">Anggota &amp; Pengurus</h1>
+          <p class="page-subtitle">Kelola data anggota, pengurus, dan pendaftar baru.</p>
+        </div>
+        <div class="admin-actions">
+          <a href="admin-anggota-form.html" class="btn btn-primary">+ Tambah Anggota</a>
+        </div>
+      </div>
+
+      <!-- Pill status: jumlah dihitung dari data oleh JS -->
+      <div class="nav nav-pills status-pills" role="group" aria-label="Filter status anggota">
+        <button type="button" class="nav-link pill-status active" data-pill="" aria-pressed="true">Semua<span class="pill-count" data-hitung="">11</span></button>
+        <button type="button" class="nav-link pill-status" data-pill="aktif" aria-pressed="false">Aktif<span class="pill-count" data-hitung="aktif">7</span></button>
+        <button type="button" class="nav-link pill-status" data-pill="menunggu" aria-pressed="false">Menunggu persetujuan<span class="pill-count" data-hitung="menunggu">3</span></button>
+        <button type="button" class="nav-link pill-status" data-pill="nonaktif" aria-pressed="false">Nonaktif<span class="pill-count" data-hitung="nonaktif">1</span></button>
+      </div>
+
+      <!-- ===== Panel: daftar anggota ===== -->
+      <section class="card admin-section" id="panelDaftar" aria-labelledby="judulDaftar">
+        <div class="app-card-header">
+          <h2 class="app-card-title" id="judulDaftar">Daftar Anggota</h2>
+        </div>
+
+        <form class="filter-admin filter-admin-3" id="formFilter" role="search" aria-label="Cari anggota" action="#">
+          <div>
+            <label for="filterCari" class="form-label">Cari anggota</label>
+            <input type="search" class="form-control" id="filterCari" name="cari" placeholder="Nama atau email">
+          </div>
+          <div>
+            <label for="filterPeran" class="form-label">Peran</label>
+            <select class="form-select" id="filterPeran" name="peran">
+              <option value="" selected>Semua peran</option>
+              <option value="Pengurus">Pengurus</option>
+              <option value="Anggota">Anggota</option>
+            </select>
+          </div>
+          <div>
+            <label for="filterTahun" class="form-label">Tanggal bergabung</label>
+            <select class="form-select" id="filterTahun" name="tahun">
+              <option value="" selected>Semua tanggal</option>
+              <option value="2026">Tahun 2026</option>
+              <option value="2025">Tahun 2025</option>
+              <option value="2024">Tahun 2024</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Cari</button>
+          <button type="reset" class="btn btn-light border">Reset</button>
+        </form>
+
+        <div class="tabel-wrap">
+          <div class="table-responsive">
+            <table class="table table-hover table-admin align-middle">
+              <caption class="visually-hidden">Daftar anggota dan pengurus</caption>
+              <colgroup>
+                <col style="width: 31%"><col style="width: 21%"><col style="width: 10%"><col style="width: 13%"><col style="width: 12%"><col style="width: 13%">
+              </colgroup>
+              <thead>
+                <tr><th scope="col">Nama</th><th scope="col">Email</th><th scope="col">Peran</th><th scope="col">Bergabung</th><th scope="col">Status</th><th scope="col">Aksi</th></tr>
+              </thead>
+              <tbody id="tabelAnggota"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="tabel-footer">
+          <span id="infoAnggota" aria-live="polite">Menampilkan 1&ndash;8 dari 11 anggota</span>
+          <nav aria-label="Navigasi halaman anggota" id="navAnggota">
+            <ul class="pagination" id="paginasiAnggota"></ul>
+          </nav>
+        </div>
+      </section>
+
+      <!-- ===== Panel: menunggu persetujuan ===== -->
+      <div id="panelMenunggu" hidden>
+        <div class="alert alert-info" id="alertMenunggu" role="status"></div>
+
+        <section class="card admin-section" aria-labelledby="judulMenunggu">
+          <div class="app-card-header">
+            <h2 class="app-card-title" id="judulMenunggu">Pendaftar Baru</h2>
+          </div>
+          <div class="tabel-wrap tabel-wrap-pendaftar">
+            <div class="table-responsive">
+              <table class="table table-hover table-admin align-middle">
+                <caption class="visually-hidden">Pendaftar yang menunggu persetujuan</caption>
+                <colgroup>
+                  <col style="width: 30%"><col style="width: 22%"><col style="width: 17%"><col style="width: 12%"><col style="width: 19%">
+                </colgroup>
+                <thead>
+                  <tr><th scope="col">Nama</th><th scope="col">Email</th><th scope="col">Tanggal daftar</th><th scope="col">Status</th><th scope="col">Aksi</th></tr>
+                </thead>
+                <tbody id="tabelPendaftar"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ================= MODAL KONFIRMASI HAPUS ================= -->
+  <div class="modal fade" id="modalHapus" tabindex="-1" aria-labelledby="modalHapusJudul" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="modalHapusJudul">Hapus data?</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body"><p class="mb-0" id="modalHapusPesan"></p></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light border" data-bs-dismiss="modal">Batal</button>
+          <button type="button" class="btn btn-danger" id="btnKonfirmasiHapus">Hapus</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL TOLAK PENDAFTARAN ================= -->
+  <div class="modal fade" id="modalTolak" tabindex="-1" aria-labelledby="modalTolakJudul" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="modalTolakJudul">Tolak pendaftaran?</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body">
+          <p id="modalTolakPesan"></p>
+          <label for="alasanTolak" class="form-label">Alasan penolakan <span class="text-muted-app">(opsional)</span></label>
+          <textarea class="form-control" id="alasanTolak" rows="3" maxlength="200" placeholder="Contoh: Data pendaftar tidak sesuai."></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light border" data-bs-dismiss="modal">Batal</button>
+          <button type="button" class="btn btn-danger" id="btnKonfirmasiTolak">Tolak Pendaftaran</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL DETAIL ANGGOTA ================= -->
+  <div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="modalDetailJudul" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="modalDetailJudul">Detail Anggota</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body">
+          <dl class="info-list info-list-modal mb-0">
+            <div class="info-row"><dt>Nama</dt><dd id="detNama"></dd></div>
+            <div class="info-row"><dt>Email</dt><dd id="detEmail"></dd></div>
+            <div class="info-row"><dt>Peran</dt><dd id="detPeran"></dd></div>
+            <div class="info-row"><dt>Bergabung</dt><dd id="detGabung"></dd></div>
+            <div class="info-row"><dt>Status</dt><dd><span class="badge rounded-pill status-badge" id="detStatus"></span></dd></div>
+          </dl>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light border" data-bs-dismiss="modal">Tutup</button>
+          <a class="btn btn-primary" id="detUbah" href="admin-anggota-form.html">Ubah</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/admin.js"></script>
+  <script src="assets/js/anggota.js"></script>
+</body>
+</html>

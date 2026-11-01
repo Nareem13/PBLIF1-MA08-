@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Masuk | Aplikasi Agenda Kegiatan Organisasi Mahasiswa</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <main class="container-fluid min-vh-100 d-flex align-items-center justify-content-center py-4">
+    <div class="auth-card shadow-sm">
+
+      <!-- Header -->
+      <header class="auth-header">
+        <img src="assets/img/logo.png" alt="Logo organisasi" class="auth-logo">
+        <h1 class="auth-title">Aplikasi Agenda Kegiatan Organisasi Mahasiswa</h1>
+        <p class="auth-subtitle">Masuk untuk melihat dan mengelola agenda organisasi</p>
+      </header>
+
+      <!-- Form login -->
+      <form id="formLogin" action="#" method="post" novalidate>
+
+        <!-- Alert error (disembunyikan sampai login gagal) -->
+        <div id="alertLogin" class="alert alert-danger auth-alert d-none auth-field" role="alert">
+          <i class="fa-solid fa-circle-exclamation mt-1" aria-hidden="true"></i>
+          <span id="alertLoginPesan">Email atau kata sandi salah. Silakan coba lagi.</span>
+        </div>
+
+        <div class="auth-field">
+          <label for="identitas" class="form-label">Email atau nama pengguna</label>
+          <input type="text" class="form-control" id="identitas" name="identitas"
+                 placeholder="nama@organisasi.id" autocomplete="username" required
+                 aria-describedby="identitasFeedback">
+          <div id="identitasFeedback" class="invalid-feedback">Email atau nama pengguna wajib diisi.</div>
+        </div>
+
+        <div class="auth-field">
+          <label for="kataSandi" class="form-label">Kata sandi</label>
+          <div class="input-group">
+            <input type="password" class="form-control" id="kataSandi" name="kataSandi"
+                   placeholder="••••••••" autocomplete="current-password" required
+                   aria-describedby="kataSandiFeedback">
+            <button type="button" class="btn password-toggle"
+                    data-toggle-password="#kataSandi"
+                    aria-label="Tampilkan kata sandi" aria-pressed="false">
+              <i class="fa-solid fa-eye" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div id="kataSandiFeedback" class="invalid-feedback">Kata sandi wajib diisi.</div>
+        </div>
+
+        <div class="auth-field d-flex justify-content-between align-items-center">
+          <div class="form-check mb-0">
+            <input class="form-check-input" type="checkbox" id="ingatSaya" name="ingatSaya">
+            <label class="form-check-label" for="ingatSaya">Ingat saya</label>
+          </div>
+          <a href="#" class="link-primary text-decoration-none">Lupa kata sandi?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100" id="btnMasuk">
+          <span class="spinner-border spinner-border-sm me-2 d-none" aria-hidden="true" id="spinnerMasuk"></span>
+          <span id="teksMasuk">Masuk</span>
+        </button>
+      </form>
+
+      <p class="auth-help">
+        Belum punya akun? <a href="register.html">Daftar sekarang</a>
+      </p>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/login.js"></script>
+</body>
+</html>

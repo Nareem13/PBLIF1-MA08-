@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard Admin | Aplikasi Agenda Kegiatan Organisasi Mahasiswa</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/admin.css" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="admin-sidebar" aria-label="Menu admin">
+    <a class="sidebar-brand" href="admin-dashboard.html">
+      <img src="assets/img/logo.png" alt="" width="44" height="31">
+      <span>Agenda Kegiatan</span>
+    </a>
+
+    <nav aria-label="Navigasi admin">
+      <ul class="sidebar-menu">
+        <li><a class="sidebar-link active" href="admin-dashboard.html" aria-current="page"><i class="fa-solid fa-gauge" aria-hidden="true"></i>Dashboard</a></li>
+        <li><a class="sidebar-link" href="admin-kegiatan.html"><i class="fa-regular fa-calendar-days" aria-hidden="true"></i>Kegiatan</a></li>
+        <li><a class="sidebar-link" href="admin-kategori.html"><i class="fa-solid fa-tags" aria-hidden="true"></i>Kategori</a></li>
+        <li><a class="sidebar-link" href="admin-anggota.html"><i class="fa-solid fa-users" aria-hidden="true"></i>Anggota &amp; Pengurus</a></li>
+        <li><a class="sidebar-link" href="admin-rekap.html"><i class="fa-solid fa-chart-column" aria-hidden="true"></i>Rekap</a></li>
+      </ul>
+    </nav>
+
+    <ul class="sidebar-menu sidebar-logout">
+      <li><a class="sidebar-link" href="login.html"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>Keluar</a></li>
+    </ul>
+  </aside>
+
+  <!-- ================= AREA UTAMA ================= -->
+  <div class="admin-main">
+
+    <header class="admin-topbar">
+      <nav aria-label="Breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="admin-dashboard.html">Beranda</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+        </ol>
+      </nav>
+
+      <div class="topbar-right">
+        <button type="button" class="btn-icon" aria-label="Notifikasi"><i class="fa-regular fa-bell" aria-hidden="true"></i></button>
+        <div class="dropdown">
+          <button class="user-menu dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false" aria-label="Menu pengguna Admin Pengurus">
+            <img src="assets/img/profile.jpg" alt="" class="user-avatar" width="32" height="32">
+            <span class="user-name">Admin Pengurus</span>
+            <i class="fa-solid fa-chevron-down user-chevron" aria-hidden="true"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="login.html"><i class="fa-solid fa-right-from-bracket fa-fw me-2" aria-hidden="true"></i>Keluar</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-content">
+
+      <!-- Page header -->
+      <div class="admin-page-header">
+        <div>
+          <h1 class="page-title">Dashboard Admin</h1>
+          <p class="page-subtitle">Ringkasan kegiatan dan peserta organisasi.</p>
+        </div>
+        <div class="admin-actions">
+          <button type="button" class="btn btn-light border" data-ekspor>Ekspor Rekap</button>
+          <a href="admin-kegiatan-form.html" class="btn btn-primary">+ Tambah Kegiatan</a>
+        </div>
+      </div>
+
+      <!-- Stat cards (FR-06 + total peserta) -->
+      <section class="row row-cols-6 g-3 admin-section" aria-label="Ringkasan status kegiatan">
+      <div class="col">
+        <div class="card stat-card h-100">
+          <div class="card-body">
+            <div class="stat-label">Total Kegiatan</div>
+            <div class="stat-value">38</div>
+            <div class="stat-caption">Tahun 2026</div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card stat-card h-100">
+          <div class="card-body">
+            <div class="stat-label">Direncanakan</div>
+            <div class="stat-value">9</div>
+            <div class="stat-caption">Akan datang</div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card stat-card h-100">
+          <div class="card-body">
+            <div class="stat-label">Berlangsung</div>
+            <div class="stat-value">1</div>
+            <div class="stat-caption">Hari ini</div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card stat-card h-100">
+          <div class="card-body">
+            <div class="stat-label">Selesai</div>
+            <div class="stat-value">26</div>
+            <div class="stat-caption">Sudah terlaksana</div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card stat-card h-100">
+          <div class="card-body">
+            <div class="stat-label">Batal</div>
+            <div class="stat-value">2</div>
+            <div class="stat-caption">Dibatalkan</div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card stat-card h-100">
+          <div class="card-body">
+            <div class="stat-label">Total Peserta</div>
+            <div class="stat-value">412</div>
+            <div class="stat-caption">Keikutsertaan</div>
+          </div>
+        </div>
+      </div>
+      </section>
+
+      <!-- Rekap per periode (FR-07) + kegiatan per kategori -->
+      <div class="admin-grid-2 admin-section">
+
+        <section class="card" aria-labelledby="judulRekap">
+          <div class="app-card-header app-card-header-lg">
+            <h2 class="app-card-title" id="judulRekap">Rekap per Periode</h2>
+            <div class="segmented" role="group" aria-label="Jenis periode">
+              <input type="radio" class="btn-check" name="periode" id="periodeBulan" value="bulan" checked>
+              <label for="periodeBulan">Bulan</label>
+              <input type="radio" class="btn-check" name="periode" id="periodeTriwulan" value="triwulan">
+              <label for="periodeTriwulan">Triwulan</label>
+              <input type="radio" class="btn-check" name="periode" id="periodeTahun" value="tahun">
+              <label for="periodeTahun">Tahun</label>
+            </div>
+          </div>
+          <div class="rekap-body">
+            <div class="rekap-top">
+              <div class="rekap-summary">
+                <div><div class="rekap-angka" id="rekapKegiatan">38</div><div class="rekap-label">Jumlah kegiatan</div></div>
+                <div><div class="rekap-angka" id="rekapPeserta">412</div><div class="rekap-label">Jumlah peserta</div></div>
+              </div>
+              <div class="rekap-legend" aria-hidden="true">
+                <span><span class="legend-dot legend-kegiatan"></span>Kegiatan</span>
+                <span><span class="legend-dot legend-peserta"></span>Peserta</span>
+              </div>
+            </div>
+            <div class="chart-box">
+              <canvas id="grafikRekap" role="img" aria-label="Grafik batang jumlah kegiatan dan jumlah peserta per periode. Data lengkap ada pada tabel di bawah grafik."></canvas>
+              <p class="text-muted small d-none" id="grafikGagal">Grafik tidak dapat dimuat. Data tersedia pada tabel di bawah.</p>
+            </div>
+            <table class="table table-sm visually-hidden" id="tabelGrafik">
+              <caption>Data grafik rekap per periode</caption>
+              <thead><tr><th scope="col">Periode</th><th scope="col">Kegiatan</th><th scope="col">Peserta</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="judulKategori">
+          <div class="app-card-header">
+            <h2 class="app-card-title" id="judulKategori">Kegiatan per Kategori</h2>
+            <a href="admin-kategori.html" class="app-card-link">Kelola</a>
+          </div>
+          <div class="kategori-body">
+            <ul class="list-unstyled m-0">
+            <li class="kategori-item">
+              <div class="kategori-row"><span class="kategori-nama">Rapat</span><span class="kategori-jumlah">14</span></div>
+              <div class="progress" role="progressbar" aria-label="Kegiatan Rapat" aria-valuenow="14" aria-valuemin="0" aria-valuemax="14">
+                <div class="progress-bar" style="width: 100.0%"></div>
+              </div>
+            </li>
+            <li class="kategori-item">
+              <div class="kategori-row"><span class="kategori-nama">Pelatihan</span><span class="kategori-jumlah">9</span></div>
+              <div class="progress" role="progressbar" aria-label="Kegiatan Pelatihan" aria-valuenow="9" aria-valuemin="0" aria-valuemax="14">
+                <div class="progress-bar" style="width: 64.3%"></div>
+              </div>
+            </li>
+            <li class="kategori-item">
+              <div class="kategori-row"><span class="kategori-nama">Sosial</span><span class="kategori-jumlah">8</span></div>
+              <div class="progress" role="progressbar" aria-label="Kegiatan Sosial" aria-valuenow="8" aria-valuemin="0" aria-valuemax="14">
+                <div class="progress-bar" style="width: 57.1%"></div>
+              </div>
+            </li>
+            <li class="kategori-item">
+              <div class="kategori-row"><span class="kategori-nama">Olahraga</span><span class="kategori-jumlah">4</span></div>
+              <div class="progress" role="progressbar" aria-label="Kegiatan Olahraga" aria-valuenow="4" aria-valuemin="0" aria-valuemax="14">
+                <div class="progress-bar" style="width: 28.6%"></div>
+              </div>
+            </li>
+            <li class="kategori-item">
+              <div class="kategori-row"><span class="kategori-nama">Lainnya</span><span class="kategori-jumlah">3</span></div>
+              <div class="progress" role="progressbar" aria-label="Kegiatan Lainnya" aria-valuenow="3" aria-valuemin="0" aria-valuemax="14">
+                <div class="progress-bar" style="width: 21.4%"></div>
+              </div>
+            </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <!-- Kegiatan terbaru -->
+      <section class="card admin-section" aria-labelledby="judulTerbaru">
+        <div class="app-card-header">
+          <h2 class="app-card-title" id="judulTerbaru">Kegiatan Terbaru</h2>
+          <a href="admin-kegiatan.html" class="app-card-link">Kelola kegiatan</a>
+        </div>
+
+        <!-- Filter pencarian (FR-05) -->
+        <form class="filter-admin" id="formFilter" role="search" aria-label="Cari kegiatan" action="#">
+          <div>
+            <label for="filterCari" class="form-label">Cari kegiatan</label>
+            <input type="search" class="form-control" id="filterCari" name="cari" placeholder="Nama kegiatan">
+          </div>
+          <div>
+            <label for="filterKategori" class="form-label">Kategori</label>
+            <select class="form-select" id="filterKategori" name="kategori">
+              <option value="" selected>Semua kategori</option>
+              <option value="rapat">Rapat</option>
+              <option value="pelatihan">Pelatihan</option>
+              <option value="sosial">Sosial</option>
+              <option value="olahraga">Olahraga</option>
+              <option value="lainnya">Lainnya</option>
+            </select>
+          </div>
+          <div>
+            <label for="filterTanggal" class="form-label">Tanggal</label>
+            <input type="date" class="form-control" id="filterTanggal" name="tanggal">
+          </div>
+          <div>
+            <label for="filterPic" class="form-label">PIC</label>
+            <select class="form-select" id="filterPic" name="pic">
+              <option value="" selected>Semua PIC</option>
+              <option value="Zaka">Zaka</option><option value="Rival">Rival</option><option value="Rival">Rival</option><option value="Elmova">Elmova</option>
+            </select>
+          </div>
+          <div>
+            <label for="filterStatus" class="form-label">Status</label>
+            <select class="form-select" id="filterStatus" name="status">
+              <option value="" selected>Semua status</option>
+              <option value="direncanakan">Direncanakan</option>
+              <option value="berlangsung">Berlangsung</option>
+              <option value="selesai">Selesai</option>
+              <option value="batal">Batal</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Cari</button>
+          <button type="reset" class="btn btn-light border">Reset</button>
+        </form>
+
+        <!-- Tabel -->
+        <div class="tabel-wrap">
+          <div class="table-responsive">
+            <table class="table table-hover table-admin align-middle">
+              <caption class="visually-hidden">Daftar kegiatan terbaru</caption>
+              <colgroup>
+                <col style="width: 24.5%"><col style="width: 10%"><col style="width: 13.7%"><col style="width: 13.7%">
+                <col style="width: 12%"><col style="width: 6.4%"><col style="width: 11%"><col style="width: 8.7%">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th scope="col">Nama kegiatan</th><th scope="col">Kategori</th><th scope="col">Tanggal &amp; jam</th>
+                  <th scope="col">Lokasi</th><th scope="col">PIC</th><th scope="col">Peserta</th>
+                  <th scope="col">Status</th><th scope="col">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="tabelKegiatan">
+              <tr data-baris data-kategori="rapat" data-status="berlangsung" data-pic="Zaka" data-tanggal="2026-10-18">
+                <td class="td-nama">Rapat Koordinasi Bulanan</td>
+                <td>Rapat</td>
+                <td>18 Okt 2026, 19.00</td>
+                <td>Sekretariat</td>
+                <td>Zaka</td>
+                <td>24</td>
+                <td><span class="badge rounded-pill status-badge bg-primary-subtle text-primary-emphasis">Berlangsung</span></td>
+                <td>
+                  <div class="aksi">
+                    <a class="btn-icon" href="admin-kegiatan-detail.html" aria-label="Lihat detail Rapat Koordinasi Bulanan"><i class="fa-regular fa-eye" aria-hidden="true"></i></a>
+                    <a class="btn-icon" href="admin-kegiatan-form.html" aria-label="Ubah Rapat Koordinasi Bulanan"><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i></a>
+                    <button type="button" class="btn-icon" data-hapus data-jenis="kegiatan" data-nama="Rapat Koordinasi Bulanan" aria-label="Hapus Rapat Koordinasi Bulanan"><i class="fa-regular fa-trash-can" aria-hidden="true"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-baris data-kategori="sosial" data-status="direncanakan" data-pic="Rival" data-tanggal="2026-10-24">
+                <td class="td-nama">Bakti Sosial Panti Asuhan</td>
+                <td>Sosial</td>
+                <td>24 Okt 2026, 08.00</td>
+                <td>Panti Asuhan Harapan</td>
+                <td>Rival</td>
+                <td>18</td>
+                <td><span class="badge rounded-pill status-badge bg-info-subtle text-info-emphasis">Direncanakan</span></td>
+                <td>
+                  <div class="aksi">
+                    <a class="btn-icon" href="admin-kegiatan-detail.html" aria-label="Lihat detail Bakti Sosial Panti Asuhan"><i class="fa-regular fa-eye" aria-hidden="true"></i></a>
+                    <a class="btn-icon" href="admin-kegiatan-form.html" aria-label="Ubah Bakti Sosial Panti Asuhan"><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i></a>
+                    <button type="button" class="btn-icon" data-hapus data-jenis="kegiatan" data-nama="Bakti Sosial Panti Asuhan" aria-label="Hapus Bakti Sosial Panti Asuhan"><i class="fa-regular fa-trash-can" aria-hidden="true"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-baris data-kategori="sosial" data-status="batal" data-pic="Elmova" data-tanggal="2026-10-27">
+                <td class="td-nama">Kerja Bakti Lingkungan</td>
+                <td>Sosial</td>
+                <td>27 Okt 2026, 07.00</td>
+                <td>Lingkungan RW 05</td>
+                <td>Elmova</td>
+                <td>0</td>
+                <td><span class="badge rounded-pill status-badge bg-danger-subtle text-danger-emphasis">Batal</span></td>
+                <td>
+                  <div class="aksi">
+                    <a class="btn-icon" href="admin-kegiatan-detail.html" aria-label="Lihat detail Kerja Bakti Lingkungan"><i class="fa-regular fa-eye" aria-hidden="true"></i></a>
+                    <a class="btn-icon" href="admin-kegiatan-form.html" aria-label="Ubah Kerja Bakti Lingkungan"><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i></a>
+                    <button type="button" class="btn-icon" data-hapus data-jenis="kegiatan" data-nama="Kerja Bakti Lingkungan" aria-label="Hapus Kerja Bakti Lingkungan"><i class="fa-regular fa-trash-can" aria-hidden="true"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-baris data-kategori="pelatihan" data-status="selesai" data-pic="Rival" data-tanggal="2026-10-10">
+                <td class="td-nama">Seminar Kepemimpinan</td>
+                <td>Pelatihan</td>
+                <td>10 Okt 2026, 13.00</td>
+                <td>Aula Lt. 2</td>
+                <td>Rival</td>
+                <td>42</td>
+                <td><span class="badge rounded-pill status-badge bg-success-subtle text-success-emphasis">Selesai</span></td>
+                <td>
+                  <div class="aksi">
+                    <a class="btn-icon" href="admin-kegiatan-detail.html" aria-label="Lihat detail Seminar Kepemimpinan"><i class="fa-regular fa-eye" aria-hidden="true"></i></a>
+                    <a class="btn-icon" href="admin-kegiatan-form.html" aria-label="Ubah Seminar Kepemimpinan"><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i></a>
+                    <button type="button" class="btn-icon" data-hapus data-jenis="kegiatan" data-nama="Seminar Kepemimpinan" aria-label="Hapus Seminar Kepemimpinan"><i class="fa-regular fa-trash-can" aria-hidden="true"></i></button>
+                  </div>
+                </td>
+              </tr>
+                <tr id="barisKosong" class="tabel-kosong" hidden>
+                  <td colspan="8">Belum ada kegiatan yang cocok</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="tabel-footer">
+          <span id="infoJumlah">Menampilkan 1–5 dari 38 kegiatan</span>
+          <nav aria-label="Navigasi halaman">
+            <ul class="pagination">
+              <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true" aria-label="Halaman sebelumnya">&lsaquo;</a></li>
+              <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#" aria-label="Halaman berikutnya">&rsaquo;</a></li>
+            </ul>
+          </nav>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ================= MODAL KONFIRMASI HAPUS ================= -->
+  <div class="modal fade" id="modalHapus" tabindex="-1" aria-labelledby="modalHapusJudul" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="modalHapusJudul">Hapus data?</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body"><p class="mb-0" id="modalHapusPesan"></p></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light border" data-bs-dismiss="modal">Batal</button>
+          <button type="button" class="btn btn-danger" id="btnKonfirmasiHapus">Hapus</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.js"></script>
+  <script src="assets/js/admin.js"></script>
+  <script src="assets/js/kegiatan-filter.js"></script>
+  <script src="assets/js/admin-dashboard.js"></script>
+</body>
+</html>
